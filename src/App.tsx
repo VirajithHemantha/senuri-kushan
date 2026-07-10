@@ -4,15 +4,15 @@ import { Sparkles, MapPin, Calendar, Clock, ChevronDown } from "lucide-react";
 
 const INVITATION = {
   couple: {
-    bride: "තක්ෂිලා",
-    groom: "භාණුක",
-    brideFull: "තක්ෂිලා සෙව්වන්දි",
-    groomFull: "භාණුක සංඛ",
+    bride: "නිශාදි",
+    groom: "දහම්",
+    brideFull: "නිශාදි",
+    groomFull: "දහම්",
   },
   date: {
-    displayNumeric: "16 . 07 . 2026",
-    displayLong: "බ්‍රහස්පතින්දා, 16 ජූලි 2026",
-    countdownTarget: "2026-07-16T08:30:00+05:30",
+    displayNumeric: "25 . 08 . 2026",
+    displayLong: "අඟහරුවාදා, 25 අගෝස්තු 2026",
+    countdownTarget: "2026-08-25T08:30:00+05:30",
   },
   time: {
     start: "පෙ.ව. 8.30",
@@ -21,12 +21,13 @@ const INVITATION = {
     goingAway: "ප.ව. 4.30",
   },
   venue: {
-    name: "Araliya Red",
+    name: "The Golden Ridge Hotel",
     city: "නුවරඑළිය",
-    mapQuery: "Araliya Red Nuwaraeliya",
-    googleMapsLink: "https://www.google.com/maps/search/?api=1&query=Araliya+Red+Nuwaraeliya",
+    mapQuery: "The Golden Ridge Hotel Nuwara Eliya",
+    googleMapsLink: "https://www.google.com/maps/search/?api=1&query=The+Golden+Ridge+Hotel+Nuwara+Eliya",
+    image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/508893674.jpg?k=784f7ed3085b40df6b700934c4ff199e219b88df8c5c789b6e9be1319eba6d1b&o=",
   },
-  rsvpContacts: ["තක්ෂිලා", "භාණුක"],
+  rsvpContacts: ["නිශාදි", "දහම්"],
 } as const;
 
 const backgroundMusic = "/Sandarenu Athi Reeka (සඳ රණ ඇත රක)  Cover Song by Nisal Sathsara ft Sachini Ranawaka.mp3";
@@ -37,12 +38,11 @@ const publicImagePath = (fileName: string) => `/images/${fileName.replaceAll(" "
 const preImagePath = (fileName: string) => `/pre/${fileName.replaceAll(" ", "%20")}`;
 
 const PRE_IMAGES = [
-  preImagePath("WhatsApp Image 2026-06-12 at 22.13.20 (1).jpeg"),
-  preImagePath("WhatsApp Image 2026-06-12 at 22.13.20 (2).jpeg"),
-  preImagePath("WhatsApp Image 2026-06-12 at 22.13.20.jpeg"),
-  preImagePath("WhatsApp Image 2026-06-12 at 22.13.21 (1).jpeg"),
-  preImagePath("WhatsApp Image 2026-06-12 at 22.13.21 (2).jpeg"),
-  preImagePath("WhatsApp Image 2026-06-12 at 22.13.21.jpeg"),
+  preImagePath("pexels-jonathanborba-13779997.jpg"),
+  preImagePath("pexels-jonathanborba-13780000.jpg"),
+  preImagePath("pexels-jonathanborba-13780002.jpg"),
+  preImagePath("pexels-jonathanborba-13780006.jpg"),
+  preImagePath("pexels-nayla-bernardes-1673442920-31838685.jpg"),
 ];
 
 const HERO_BACKGROUND_IMAGE = PRE_IMAGES[4];
@@ -74,12 +74,12 @@ function FloatingPetals() {
     }
 
     const colors = ["#e87a9e", "#f2a7be", "#8c244c", "#c44576", "#fce1eb"];
-    const petalCount = isMobile ? 10 : 18;
+    const petalCount = isMobile ? 12 : 24; // slightly increased for elegance
 
     const newPetals = Array.from({ length: petalCount }).map((_, i) => ({
       id: i,
       x: Math.random() * 100,
-      size: Math.random() * 7 + 7,
+      size: Math.random() * 12 + 12, // larger for 3D effect
       rotation: Math.random() * 360,
       duration: Math.random() * 11 + 16,
       delay: Math.random() * 20,
@@ -91,23 +91,33 @@ function FloatingPetals() {
   }, []);
 
   return (
-    <div className={`pointer-events-none fixed inset-0 overflow-hidden z-40 ${isLowPowerMode ? "opacity-70" : ""}`}>
+    <div 
+      className={`pointer-events-none fixed inset-0 overflow-hidden z-40 ${isLowPowerMode ? "opacity-70" : ""}`}
+      style={{ perspective: "1000px" }} // Perspective for 3D effect
+    >
       {petals.map((petal) => (
         <motion.div
           key={petal.id}
-          className="absolute drop-shadow-[0_2px_10px_rgba(27,67,50,0.3)]"
-          style={{ color: petal.color }}
+          className="absolute drop-shadow-[0_5px_8px_rgba(0,0,0,0.15)]"
+          style={{ 
+            color: petal.color,
+            transformStyle: "preserve-3d" // Ensure child retains 3D rotation
+          }}
           initial={{
             x: `${petal.x}vw`,
             y: "-10vh",
-            rotate: petal.rotation,
+            rotateX: petal.rotation,
+            rotateY: petal.rotation / 2,
+            rotateZ: petal.rotation,
             opacity: 0,
           }}
           animate={{
             y: "110vh",
             x: `${petal.x + petal.drift}vw`,
-            rotate: petal.rotation + (isLowPowerMode ? 360 : 720),
-            opacity: [0, 0.9, 0.8, 0],
+            rotateX: petal.rotation + (isLowPowerMode ? 360 : 720),
+            rotateY: (petal.rotation / 2) + (isLowPowerMode ? 360 : 720),
+            rotateZ: petal.rotation + (isLowPowerMode ? 360 : 720),
+            opacity: [0, 1, 1, 0],
           }}
           transition={{
             duration: isLowPowerMode ? petal.duration * 1.2 : petal.duration,
@@ -116,8 +126,18 @@ function FloatingPetals() {
             ease: "linear",
           }}
         >
-          <svg width={petal.size} height={petal.size} viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12,2C12,2 10,6 10,10C10,14 12,22 12,22C12,22 14,14 14,10C14,6 12,2 12,2Z" />
+          <svg width={petal.size} height={petal.size * 1.2} viewBox="0 0 30 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id={`grad-${petal.id}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#ffffff" stopOpacity="0.8" />
+                <stop offset="40%" stopColor={petal.color} stopOpacity="0.9" />
+                <stop offset="100%" stopColor={petal.color} stopOpacity="1" />
+              </linearGradient>
+            </defs>
+            <path 
+              d="M15,5 C17,2 25,0 28,8 C30,20 20,30 15,35 C10,30 0,20 2,8 C5,0 13,2 15,5 Z" 
+              fill={`url(#grad-${petal.id})`}
+            />
           </svg>
         </motion.div>
       ))}
@@ -258,7 +278,7 @@ function Gallery() {
             }}
             transition={{
               ease: "linear",
-              duration: 25,
+              duration: 5,
               repeat: Infinity,
             }}
           >
@@ -655,17 +675,17 @@ export default function WeddingInvitation() {
 
                   <div className="text-slate-800 space-y-6 max-w-3xl mx-auto leading-relaxed text-base md:text-lg">
                     <p className="text-slate-700">
-                      ඩබ්. ඒ. ජයරත්න මහතාගේ සහ පී. ඩබ්. ජානකී ප්‍රියංකා චන්ද්‍රරත්න මහත්මියගේ ආදරණීය දියණිය වන
+                      ආර්. එම්. සුනිල් කුමාර මහතාගේ සහ ඩබ්. එච්. කමලා ප්‍රියදර්ශනී මහත්මියගේ ආදරණීය දියණිය වන
                     </p>
                     <h3 className="text-3xl md:text-4xl font-bold text-[#c44576] my-2">
-                      තක්ෂිලා සෙව්වන්දි,
+                      නිශාදි,
                     </h3>
 
                     <p className="text-slate-700">
-                      ඒ. වී. ජයවර්ධන මහතාගේ සහ එම්. එම්. චන්ද්‍රිකා නිශාන්ති මහත්මියගේ ආදරණීය පුත් වන
+                      එච්. ඒ. ප්‍රසන්න කුමාර මහතාගේ සහ ඩී. එම්. චන්ද්‍රිකා කුමාරි මහත්මියගේ ආදරණීය පුත් වන
                     </p>
                     <h3 className="text-3xl md:text-4xl font-bold text-[#c44576] my-2">
-                      භාණුක සංඛ
+                      දහම්
                     </h3>
 
                     <p className="text-slate-700 max-w-2xl mx-auto pt-2">
@@ -673,8 +693,8 @@ export default function WeddingInvitation() {
                     </p>
 
                     <div className="py-6 my-4 border-t border-b border-[#f2a7be]/50 space-y-3 font-semibold text-slate-900">
-                      <p>2026 ජූලි මස 16 වන ගුරු දින,</p>
-                      <p>Araliya Red (නුවරඑළිය) උත්සව ශාලා පරිශ්‍රයට,</p>
+                      <p>2026 අගෝස්තු මස 25 වන අඟහරුවාදා දින,</p>
+                      <p>The Golden Ridge Hotel (නුවරඑළිය) උත්සව ශාලා පරිශ්‍රයට,</p>
                       <p>ඔබට</p>
                       <p className="text-lg md:text-xl font-bold">පැමිණෙන මෙන් ගෞරවයෙන් ආරාධනා කර සිටිමු.</p>
                     </div>
@@ -821,7 +841,7 @@ export default function WeddingInvitation() {
                       className="h-px bg-white/40 mb-8"
                     />
 
-                    <h2 
+                    <h2
                       className="text-6xl md:text-[100px] text-white font-normal leading-tight"
                       style={{ fontFamily: "'Great Vibes', cursive" }}
                     >
@@ -871,6 +891,28 @@ export default function WeddingInvitation() {
             <section className="relative py-14 md:py-48 bg-transparent overflow-hidden">
               <div className="container mx-auto px-6 max-w-7xl relative z-10 text-center">
 
+                {/* Hotel Image */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1 }}
+                  className="mb-12 md:mb-20"
+                >
+                  <div className="relative w-full max-w-4xl mx-auto overflow-hidden rounded-3xl shadow-[0_30px_80px_-20px_rgba(140,36,76,0.2)] border border-[#f2a7be]/20 group">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-10" />
+                    <img
+                      src={INVITATION.venue.image}
+                      alt={`${INVITATION.venue.name} - ${INVITATION.venue.city}`}
+                      className="w-full h-[300px] md:h-[500px] object-cover transition-transform duration-[2s] group-hover:scale-105"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 z-20 p-6 md:p-10 text-left">
+                      <p className="text-white/70 text-xs md:text-sm tracking-widest font-bold uppercase mb-2">උත්සව ශාලාව</p>
+                      <h3 className="text-2xl md:text-4xl text-white font-bold drop-shadow-lg">{INVITATION.venue.name}</h3>
+                      <p className="text-white/80 text-sm md:text-base tracking-wider mt-1 font-medium">{INVITATION.venue.city}</p>
+                    </div>
+                  </div>
+                </motion.div>
 
                 <div className="flex justify-center w-full">
                   <div className="w-full max-w-[560px] text-left">
