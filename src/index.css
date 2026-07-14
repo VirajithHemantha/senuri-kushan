@@ -10,23 +10,23 @@
   --font-playball: "Abhaya Libre", cursive;
   --font-sinhala: "Abhaya Libre";
 
-  --color-sage: #d18a9e;
+  --color-sage: #a67c52;
   /* Soft Sunset Red */
   --color-paper: #ffffff;
 
-  --color-theme-50: #fff5f2;
-  --color-theme-100: #ffe8e1;
-  --color-theme-200: #ffd1c1;
+  --color-theme-50: #fdfaf6;
+  --color-theme-100: #f5e6d3;
+  --color-theme-200: #e8cbaa;
   --color-theme-300: #F2AE66;
   /* User Golden Orange */
   --color-theme-400: #fd9b7e;
   --color-theme-500: #FD8A6B;
   /* User Coral */
-  --color-theme-600: #ea5a7a;
-  --color-theme-700: #C30E59;
+  --color-theme-600: #8b5a2b;
+  --color-theme-700: #5c3a21;
   /* User Deep Magenta */
-  --color-theme-800: #a10b4a;
-  --color-theme-900: #7d0939;
+  --color-theme-800: #4a2f1d;
+  --color-theme-900: #382415;
 }
 
 :root {
@@ -85,9 +85,9 @@ body {
 
 .website-shell {
   background:
-    radial-gradient(circle at 10% 10%, rgba(140, 36, 76, 0.15), transparent 40%),
-    radial-gradient(circle at 90% 90%, rgba(196, 69, 118, 0.1), transparent 40%),
-    radial-gradient(circle at 50% 20%, rgba(242, 167, 190, 0.2), transparent 50%);
+    radial-gradient(circle at 10% 10%, rgba(92, 58, 33, 0.15), transparent 40%),
+    radial-gradient(circle at 90% 90%, rgba(139, 90, 43, 0.1), transparent 40%),
+    radial-gradient(circle at 50% 20%, rgba(196, 156, 113, 0.2), transparent 50%);
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
