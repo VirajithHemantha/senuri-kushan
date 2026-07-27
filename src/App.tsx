@@ -59,8 +59,7 @@ function FloatingPetals() {
       delay: number;
       color: string;
       drift: number;
-    }>
-  >([]);
+    }>>([]);
 
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -73,13 +72,13 @@ function FloatingPetals() {
       return;
     }
 
-    const colors = ["#c3a3a6", "#ccbbb3", "#aa8372", "#aa8372", "#ccbbb3"];
-    const petalCount = isMobile ? 12 : 24; // slightly increased for elegance
+    const colors = ["#e63946", "#d90429", "#ef233c", "#ba1826", "#a4161a", "#ff4d6d", "#c9184a"];
+    const petalCount = isMobile ? 16 : 32;
 
     const newPetals = Array.from({ length: petalCount }).map((_, i) => ({
       id: i,
       x: Math.random() * 100,
-      size: Math.random() * 12 + 12, // larger for 3D effect
+      size: Math.random() * 12 + 12,
       rotation: Math.random() * 360,
       duration: Math.random() * 11 + 16,
       delay: Math.random() * 20,
@@ -93,15 +92,15 @@ function FloatingPetals() {
   return (
     <div 
       className={`pointer-events-none fixed inset-0 overflow-hidden z-40 ${isLowPowerMode ? "opacity-70" : ""}`}
-      style={{ perspective: "1000px" }} // Perspective for 3D effect
+      style={{ perspective: "1000px" }}
     >
       {petals.map((petal) => (
         <motion.div
           key={petal.id}
-          className="absolute drop-shadow-[0_5px_8px_rgba(0,0,0,0.15)]"
+          className="absolute drop-shadow-[0_8px_15px_rgba(0,0,0,0.35)]"
           style={{ 
             color: petal.color,
-            transformStyle: "preserve-3d" // Ensure child retains 3D rotation
+            transformStyle: "preserve-3d"
           }}
           initial={{
             x: `${petal.x}vw`,
@@ -129,13 +128,14 @@ function FloatingPetals() {
           <svg width={petal.size} height={petal.size * 1.2} viewBox="0 0 30 35" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id={`grad-${petal.id}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#ffffff" stopOpacity="0.8" />
-                <stop offset="40%" stopColor={petal.color} stopOpacity="0.9" />
-                <stop offset="100%" stopColor={petal.color} stopOpacity="1" />
+                <stop offset="0%" stopColor="#ffffff" stopOpacity="0.5" />
+                <stop offset="25%" stopColor={petal.color} stopOpacity="0.9" />
+                <stop offset="75%" stopColor={petal.color} stopOpacity="1" />
+                <stop offset="100%" stopColor="#4a0404" stopOpacity="0.8" />
               </linearGradient>
             </defs>
             <path 
-              d="M15,5 C17,2 25,0 28,8 C30,20 20,30 15,35 C10,30 0,20 2,8 C5,0 13,2 15,5 Z" 
+              d="M15,0 C28,8 32,24 15,35 C4,28 -2,12 15,0 Z" 
               fill={`url(#grad-${petal.id})`}
             />
           </svg>
@@ -615,7 +615,7 @@ export default function WeddingInvitation() {
                 <motion.p
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="text-base md:text-lg tracking-normal font-bold text-[#aa8372] drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]"
+                  className="text-base md:text-lg tracking-normal font-bold text-[#aa8372] drop-shadow-[0_0_10px_rgba(255,255,255,1)] drop-shadow-[0_0_20px_rgba(255,255,255,1)] drop-shadow-[0_0_30px_rgba(255,255,255,0.8)] bg-white/20 px-6 py-2 rounded-full backdrop-blur-sm border border-white/40"
                 >
                   Wedding Invitation!
                 </motion.p>
