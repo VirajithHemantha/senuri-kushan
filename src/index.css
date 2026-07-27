@@ -1,13 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700&family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700&family=Great+Vibes&family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Playball&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-serif: "Abhaya Libre", serif;
-  --font-script: "Abhaya Libre", cursive;
-  --font-sans: "Abhaya Libre", sans-serif;
-  --font-cinzel: "Abhaya Libre", serif;
+  --font-serif: "Cinzel", serif;
+  --font-script: "Great Vibes", cursive;
+  --font-sans: "Montserrat", sans-serif;
+  --font-content: "Cormorant Garamond", serif;
+  --font-cinzel: "Cinzel", serif;
+  --font-cinzel-decorative: "Cinzel Decorative", serif;
   --font-montserrat: "Montserrat", sans-serif;
-  --font-playball: "Abhaya Libre", cursive;
+  --font-playball: "Playball", cursive;
   --font-sinhala: "Abhaya Libre";
 
   --color-sage: #c3a3a6;
@@ -32,14 +34,14 @@
 :root {
   background-color: var(--color-paper);
   color: #4D412F;
-  font-family: var(--font-sinhala);
+  font-family: var(--font-content);
 }
 
 body,
 input,
 textarea,
 button {
-  font-family: "Abhaya Libre", Arial, sans-serif !important;
+  font-family: "Cormorant Garamond", "Montserrat", Arial, sans-serif !important;
 }
 
 html,
@@ -57,6 +59,22 @@ body {
 
 .script {
   font-family: var(--font-script);
+}
+
+.font-cinzel {
+  font-family: "Cinzel", serif !important;
+}
+
+.font-cinzel-decorative {
+  font-family: "Cinzel Decorative", serif !important;
+}
+
+.font-topic {
+  font-family: "Great Vibes", cursive !important;
+}
+
+.font-content {
+  font-family: "Cormorant Garamond", serif !important;
 }
 
 

@@ -30,7 +30,7 @@ const INVITATION = {
   rsvpContacts: ["Senuri", "Kushan"],
 } as const;
 
-const backgroundMusic = "/Die with a smile [Bridgerton Version]  NEW RELEASE.mp3";
+const backgroundMusic = "/Die%20with%20a%20smile%20%5BBridgerton%20Version%5D%20%20NEW%20RELEASE.mp3";
 const googleScriptUrl =
   "https://script.google.com/macros/s/AKfycby0MIr0BBQnwPVhIqLk-nOvRaJ71vY8MABRm3wLiE5vnlcD6QpbGasYHEWDpSsLZqRM/exec";
 
@@ -533,15 +533,15 @@ export default function WeddingInvitation() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 2, delay: 0.5 }}
-                  className="absolute inset-0 flex flex-col items-center justify-start pt-[30vh] md:pt-32 z-[105] pointer-events-none text-center px-6"
+                  className="absolute inset-0 flex flex-col items-center justify-start pt-[15vh] md:pt-32 z-[105] pointer-events-none text-center px-6"
                 >
                   <motion.h2
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 2, delay: 0.8 }}
-                    className="text-5xl md:text-7xl text-[#aa8372] mb-8 drop-shadow-md font-bold font-topic"
+                    className="text-lg md:text-2xl text-[#aa8372] mb-8 drop-shadow-md font-normal font-cinzel uppercase tracking-[0.2em]"
                   >
-                    Wedding Invitation!
+                    Wedding Invitation
                   </motion.h2>
 
                   <div className="flex flex-col items-center w-full max-w-[280px] mx-auto">
@@ -549,7 +549,7 @@ export default function WeddingInvitation() {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 2, delay: 1.2 }}
-                      className="text-3xl md:text-6xl text-[#aa8372] tracking-widest font-bold drop-shadow-md self-start font-cinzel-decorative"
+                      className="text-2xl md:text-5xl text-[#aa8372] tracking-widest font-normal drop-shadow-md self-start font-cinzel-decorative"
                     >
                       {INVITATION.couple.bride}
                     </motion.p>
@@ -558,7 +558,7 @@ export default function WeddingInvitation() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 2, delay: 1.5 }}
-                      className="text-2xl md:text-4xl text-[#aa8372] italic drop-shadow-md my-1 font-bold font-cinzel-decorative"
+                      className="text-xl md:text-3xl text-[#aa8372] italic drop-shadow-md my-1 font-normal font-cinzel-decorative"
                     >
                       &
                     </motion.span>
@@ -567,7 +567,7 @@ export default function WeddingInvitation() {
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 2, delay: 1.8 }}
-                      className="text-3xl md:text-6xl text-[#aa8372] tracking-widest font-bold drop-shadow-md self-end font-cinzel-decorative"
+                      className="text-2xl md:text-5xl text-[#aa8372] tracking-widest font-normal drop-shadow-md self-end font-cinzel-decorative"
                     >
                       {INVITATION.couple.groom}
                     </motion.p>
