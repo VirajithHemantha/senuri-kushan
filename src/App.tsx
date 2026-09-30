@@ -15,10 +15,8 @@ const INVITATION = {
     countdownTarget: "2026-12-07T18:30:00+05:30",
   },
   time: {
-    start: "6.30 PM",
-    rings: "",
-    register: "",
-    end: "",
+    poruwa: "5.00 PM",
+    reception: "6.30 PM",
   },
   venue: {
     name: "Crystal Altrium",
@@ -805,7 +803,8 @@ export default function WeddingInvitation() {
                         <div>
                           <div className="text-[13px] tracking-wider font-bold text-[#aa8372] mb-2">Timeline</div>
                           <div className="text-base md:text-lg text-slate-900 font-bold space-y-1">
-                            <p>Start : {INVITATION.time.start}</p>
+                            <p>Poruwa Ceremony : {INVITATION.time.poruwa}</p>
+                            <p>Reception : {INVITATION.time.reception}</p>
                           </div>
                         </div>
                       </div>
@@ -1148,6 +1147,9 @@ export default function WeddingInvitation() {
 
                   <p className="text-sm md:text-base tracking-widest text-slate-500 font-bold pt-12">
                     © 2026 {INVITATION.couple.bride} & {INVITATION.couple.groom}
+                  </p>
+                  <p className="text-xs mt-3 font-sans tracking-wider text-slate-500">
+                    Want a beautiful wedding website like this? Create yours with <a target="_blank" rel="noreferrer" className="text-[#aa8372] hover:text-slate-700 underline font-bold transition-colors" href="https://wa.me/94707819074">invitemint</a>
                   </p>
                 </motion.div>
               </div>
