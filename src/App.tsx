@@ -461,7 +461,7 @@ export default function WeddingInvitation() {
             <video
               ref={introVideoRef}
               src="/Wedding_invitation_intro_video_202606081545.mp4"
-              muted={!hasStarted}
+              muted={true}
               playsInline
               preload="auto"
               autoPlay
