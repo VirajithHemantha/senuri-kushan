@@ -30,7 +30,7 @@ const INVITATION = {
 
 const backgroundMusic = "/Die%20with%20a%20smile%20%5BBridgerton%20Version%5D%20%20NEW%20RELEASE.mp3";
 const googleScriptUrl =
-  "https://script.google.com/macros/s/AKfycby0MIr0BBQnwPVhIqLk-nOvRaJ71vY8MABRm3wLiE5vnlcD6QpbGasYHEWDpSsLZqRM/exec";
+  "https://script.google.com/macros/s/AKfycbz8SPkikT-oX6_mZLs7LHiEU58WdbT3Sf2snKQpxmlDl-RCJ_xa1o0odbjydLFQMtzp/exec";
 
 const publicImagePath = (fileName: string) => `/images/${fileName.replaceAll(" ", "%20")}`;
 const preImagePath = (fileName: string) => `/pre/${fileName.replaceAll(" ", "%20")}`;
@@ -324,7 +324,7 @@ export default function WeddingInvitation() {
   const [hasAttemptedAutoplay, setHasAttemptedAutoplay] = useState(false);
 
   const [rsvpForm, setRsvpForm] = useState({
-    name: "",
+    name: displayName,
     guests: "1",
     attending: "yes",
   });
@@ -332,7 +332,7 @@ export default function WeddingInvitation() {
   const [rsvpStatus, setRsvpStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   const [wishesForm, setWishesForm] = useState({
-    name: "",
+    name: displayName,
     wish: "",
   });
 
@@ -375,7 +375,7 @@ export default function WeddingInvitation() {
       });
 
       setRsvpStatus("success");
-      setRsvpForm({ name: "", guests: "1", attending: "yes" });
+      setRsvpForm({ name: displayName, guests: "1", attending: "yes" });
       setTimeout(() => setRsvpStatus("idle"), 5000);
     } catch {
       setRsvpStatus("error");
@@ -401,7 +401,7 @@ export default function WeddingInvitation() {
       });
 
       setWishesStatus("success");
-      setWishesForm({ name: "", wish: "" });
+      setWishesForm({ name: displayName, wish: "" });
       setTimeout(() => setWishesStatus("idle"), 5000);
     } catch {
       setWishesStatus("error");
