@@ -302,9 +302,21 @@ function Gallery() {
 }
 
 export default function WeddingInvitation() {
-  const searchParams = new URLSearchParams(window.location.search);
-  const guestPrefix = searchParams.get('prefix');
-  const guestName = searchParams.get('name');
+  let displayName = '';
+  const pathName = window.location.pathname.slice(1);
+  const decodedPathName = pathName ? decodeURIComponent(pathName) : '';
+
+  if (decodedPathName && decodedPathName !== 'admin') {
+    displayName = decodedPathName;
+  } else {
+    // Fallback to old query params
+    const searchParams = new URLSearchParams(window.location.search);
+    const guestPrefix = searchParams.get('prefix');
+    const guestName = searchParams.get('name');
+    if (guestName) {
+      displayName = guestPrefix ? `${guestPrefix} ${guestName}` : guestName;
+    }
+  }
 
   const [hasStarted, setHasStarted] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
@@ -624,12 +636,7 @@ export default function WeddingInvitation() {
                   transition={{ delay: 0.15, duration: 0.8 }}
                   className="mt-10"
                 >
-                  {guestName && (
-                    <div className="mb-8 flex flex-col items-center">
-                      <p className="text-3xl md:text-4xl text-[#aa8372] font-bold mb-2" style={{ fontFamily: "'Great Vibes', 'Noto Sans Sinhala', cursive" }}>{guestPrefix} {guestName}</p>
-                      <p className="text-base md:text-lg text-slate-700 tracking-widest font-semibold">We cordially invite you</p>
-                    </div>
-                  )}
+
                   <h1 className="text-6xl sm:text-7xl md:text-8xl text-slate-800 italic leading-none drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] font-cinzel-decorative">
                     {INVITATION.couple.bride}
                   </h1>
@@ -721,6 +728,18 @@ export default function WeddingInvitation() {
                     <p className="text-slate-700 max-w-2xl mx-auto pt-2 font-content text-lg">
                       Together with their families, joyfully invite you to share in their happiness as they unite in marriage.
                     </p>
+
+                    {displayName && (
+                      <div className="mt-8 flex flex-col items-center">
+                        <p className="text-base md:text-lg text-slate-700 tracking-widest font-semibold text-center leading-relaxed">
+                          We cordially invite <br />
+                          <span className="text-3xl md:text-4xl text-[#aa8372] font-bold block my-3" style={{ fontFamily: "'Great Vibes', 'Noto Sans Sinhala', cursive" }}>
+                            {displayName}
+                          </span>
+                          to celebrate our special day with us.
+                        </p>
+                      </div>
+                    )}
 
                     <div className="py-6 my-4 border-t border-b border-[#ccbbb3]/50 space-y-3 font-semibold text-slate-900 font-content text-lg">
                       <p>On Monday, 7th December 2026,</p>
